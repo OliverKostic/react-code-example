@@ -1,0 +1,203 @@
+@import '/src/css/common';
+
+$spacing-dynamic-inset-800: clamp(3.375rem, 3.125rem + 1.1111111111111112vw, 4.125rem);
+
+.passenger-component {
+  .passenger-container {
+    cursor: pointer;
+    border: solid 1px transparent;
+    width: fit-content;
+    .icon {
+      display: inline-block;
+      height: $sizing-dynamic-s;
+      width: $sizing-dynamic-s;
+      vertical-align: middle;
+    }
+    .label {
+      display: inline-block;
+      margin-left: $spacing-dynamic-inline-200;
+      margin-right: $spacing-dynamic-inline-300;
+      vertical-align: middle;
+      @include typo-base-highlight;
+    }
+    .dropdown-arrow {
+      display: inline-block;
+      height: $sizing-dynamic-xs;
+      width: $sizing-dynamic-xs;
+      vertical-align: middle;
+    }
+  }
+}
+
+.passenger-selection-header {
+  background-color: $color-background-neutral-50;
+  position: absolute;
+  top: auto;
+  left: 0;
+  bottom: 100%;
+  width: 100%;
+  padding: $spacing-dynamic-inset-400 $spacing-dynamic-inset-500;
+  white-space: nowrap;
+
+  .title {
+    text-align: center;
+    vertical-align: middle;
+    @include typo-base-highlight;
+    display: inline-block;
+    width: 100%;
+    color: $color-text-default;
+  }
+
+  .close-icon {
+    vertical-align: middle;
+    display: inline-block;
+    width: $sizing-dynamic-s;
+    height: $sizing-dynamic-s;
+    cursor: pointer;
+    path {
+      fill: $color-text-default;
+    }
+  }
+
+  .close-icon:before {
+    display: inline-block;
+    content: '';
+    margin-left: -100%;
+  }
+}
+
+.passenger-selection-header:before {
+  content: ' ';
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: absolute;
+  top: auto;
+  left: 0;
+  bottom: 100%;
+  opacity: 60%;
+  overflow: clip;
+}
+
+.passenger-selection-container {
+  line-height: 100%;
+  border: none;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  background: white;
+  z-index: 3;
+  min-width: min-content;
+  padding: $spacing-dynamic-inset-500;
+  padding-top: $spacing-dynamic-inset-400;
+
+  .category-container {
+    .content-container {
+      display: flex;
+      .text-container {
+        width: max-content;
+        display: block;
+        .title {
+          @include typo-base-highlight;
+          color: $color-text-default;
+        }
+        .subtext {
+          @include typo-subtext;
+          color: $color-text-neutral-400;
+          width: max-content;
+        }
+      }
+
+      .input-container {
+        display: block;
+        align-self: center;
+        margin-left: auto;
+        margin-right: 0;
+        width: max-content;
+        .stepper-button {
+          cursor: pointer;
+          display: inline-block;
+          vertical-align: middle;
+          width: $sizing-dynamic-s;
+          height: $sizing-dynamic-s;
+          path {
+            fill: $color-text-default;
+          }
+        }
+        .stepper-button:hover {
+          path {
+            fill: $color-foreground-brand-4-500;
+          }
+        }
+        .stepper-button:active {
+          svg {
+            margin-left: 5%;
+            margin-top: 5%;
+            width: 90%;
+            height: 90%;
+          }
+          path {
+            fill: $color-foreground-brand-4-500;
+          }
+        }
+
+        .amount-label {
+          margin: 0px $spacing-dynamic-inline-400;
+          vertical-align: middle;
+          @include typo-base-highlight;
+        }
+      }
+    }
+    .warning-container {
+      margin-top: $spacing-dynamic-stacking-300;
+      padding: $spacing-dynamic-inset-400;
+      display: flex;
+      width: 100%;
+
+      border: solid $color-border-warning 2px;
+      border-radius: $borderRadius-rounded-xs;
+      background-color: $color-background-warning;
+
+      .warning-icon {
+        align-self: center;
+        width: $sizing-dynamic-xs;
+        height: $sizing-dynamic-xs;
+        flex-shrink: 0;
+      }
+      .warning {
+        padding-left: $spacing-dynamic-inline-400;
+        @include typo-subtext;
+      }
+    }
+  }
+
+  .button-container {
+    margin-top: $spacing-dynamic-stacking-500;
+    .continue-button {
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .passenger-selection-container {
+    @include dropdown-shadow;
+    position: absolute;
+    bottom: auto;
+    left: auto;
+
+    width: min-content;
+    margin-top: 2px;
+    margin-left: -1px;
+
+    .input-container {
+      padding-left: $spacing-dynamic-inset-800;
+    }
+  }
+  .passenger-selection-header {
+    display: none;
+  }
+}
